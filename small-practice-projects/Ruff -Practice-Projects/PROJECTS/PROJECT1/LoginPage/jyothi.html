@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav--</title>
+    <style>
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            background-color: black;
+            color: white;
+        }
+
+        .navlinks ul li a{
+            text-decoration: none;
+            list-style-type: none;
+            color: white;
+            
+        }
+        .navlinks ul li a:hover{
+            cursor: pointer;
+            padding: 16px;
+            background-color: white;
+            color: black;
+            border-radius: 7px;
+        }
+
+        .navlinks ul li{
+            list-style-type: none;
+            display: inline-block;
+            margin-left: 40px;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-right: 16px;
+        }
+
+
+        h1{
+            font-size: 40px;
+            margin-left: 16px;
+        }
+
+
+        @media (max-width : 720px) {
+            .navlinks{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1> Brand</h1>
+        <div class="navlinks">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Feddback</a></li>   
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>

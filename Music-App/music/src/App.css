@@ -1,0 +1,76 @@
+*{
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+
+:root{
+  --custome-gray: rgba(128, 128, 128, 0.247);
+  --custome-moregray: rgba(80, 80, 80, 0.247);
+  background-color: rgb(27, 27, 27);
+  color: white;
+}
+
+main{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "aside header"
+                      "aside home"
+                      "footer footer";
+
+  height: 100vh;
+  margin: 5px;
+}
+
+main > section{
+  margin: 5px;
+}
+
+.header{
+  grid-area: header;
+  height: 60px;
+}
+.aside{
+  grid-area: aside;
+  background-color: var(--custome-moregray) ;
+  width: 350px;
+  border-radius: 16px;
+  padding: 8px;
+}
+.home{
+  grid-area: home;
+}
+.footer{
+  grid-area: footer;
+  width: 100%;
+}
+
+
+@media (max-width:768px){
+  .aside{
+    display: none;
+  }
+  .person-details{
+    font-size: 10px;
+  }
+}
+
+
+
+
+
+.song-player {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-player audio {
+  width: 100%;
+}
+
+
+

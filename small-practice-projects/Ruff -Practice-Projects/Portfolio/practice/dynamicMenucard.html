@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Menu Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .menu-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .menu-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .menu-card h3 {
+            margin: 10px 0;
+        }
+        .menu-card p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu-container" id="menuContainer"></div>
+
+<script>
+    // Sample menu card data
+const menuCardsData = [
+{
+    name: "Deluxe Burger",
+    description: "A juicy burger with cheese, lettuce, and special sauce.",
+    image: "https://via.placeholder.com/300x200.png?text=Deluxe+Burger"
+},
+{
+    name: "Grilled Chicken",
+    description: "Perfectly grilled chicken with herbs and spices.",
+    image: "https://via.placeholder.com/300x200.png?text=Grilled+Chicken"
+},
+{
+    name: "Caesar Salad",
+    description: "Fresh greens topped with Caesar dressing and croutons.",
+    image: "https://via.placeholder.com/300x200.png?text=Caesar+Salad"
+},
+{
+    name: "Pasta Alfredo",
+    description: "Creamy Alfredo pasta with a hint of garlic.",
+    image: "https://via.placeholder.com/300x200.png?text=Pasta+Alfredo"
+},
+{
+    name: "Steak Special",
+    description: "Tender steak served with vegetables and mashed potatoes.",
+    image: "https://via.placeholder.com/300x200.png?text=Steak+Special"
+},
+{
+    name: "Tiramisu",
+    description: "A classic Italian dessert with coffee and cream.",
+    image: "https://via.placeholder.com/300x200.png?text=Tiramisu"
+}
+];
+
+// Get the container element
+const menuContainer = document.getElementById('menuContainer');
+
+// Function to create a card
+function createMenuCard(menuItem) {
+const card = document.createElement('div');
+card.classList.add('menu-card');
+
+const img = document.createElement('img');
+img.src = menuItem.image;
+img.alt = menuItem.name;
+
+const title = document.createElement('h3');
+title.textContent = menuItem.name;
+
+const description = document.createElement('p');
+description.textContent = menuItem.description;
+
+// Append elements to the card
+card.appendChild(img);
+card.appendChild(title);
+card.appendChild(description);
+
+// Append card to container
+menuContainer.appendChild(card);
+}
+
+// Generate all menu cards
+menuCardsData.forEach(menuItem => createMenuCard(menuItem));
+
+</script>
+</body>
+</html>

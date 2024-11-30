@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+      html{
+        background-color: red;
+        height: 100%;
+      }
+    
+    h1{
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    
+    }
+
+    #container{
+        height: 325px;
+        width: 350px;
+        background-color: aqua;
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        grid-template-rows: 75px 75px 75px 75px;
+        grid-template-areas:
+        "bill amount"
+        "tip percentage"
+        "tip amount"
+        "total Amount"
+        "btn btn";
+        margin: 0 auto;
+        border: 5px solid green;
+        padding: 25px;
+    
+    }
+    </style>
+</head>
+<body>
+
+    <h1>Tip Calculator</h1>
+    <div id="container">
+        Bill Amount: <input id="bill-amount" type="number">
+        Tip percentage: <input id="tip-percentage" type="number"> 
+        Tip Amount: <span id="tipPercentage"></span>
+        Total bill: <span id="total-bill"></span>
+
+        <button id="calculate">calculate</button>
+    </div>
+    
+</body>
+<script>
+    const btn = document.getElementById('calculate');
+
+    btn.addEventListener('click',function(){
+        const billAmount =  document.getElementById('bill-amount').valueAsNumber;
+        const tipPercentage = document.getElementById('tip-percentage').valueAsNumber;
+
+        const tipAmount = (billAmount * tipPercentage) / 100
+
+        const totalBill = billAmount + tipAmount;
+
+        const finalTip = document.getElementById("tipPercentage");
+        const finalstate = document.getElementById("total-bill");
+        finalstate.innerText = totalBill ;
+        finalTip.innerText = tipAmount;
+
+     })
+
+</script>
+</html> -->

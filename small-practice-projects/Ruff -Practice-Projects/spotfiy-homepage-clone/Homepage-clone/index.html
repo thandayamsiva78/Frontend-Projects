@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;margin: 0;box-sizing: border-box;font-family: "Poppins" , sans-serif;
+            scroll-behavior: smooth;
+        }
+        html , body{
+            max-width: 100% !important;
+            overflow-x: hidden !important;
+            background-color: black;
+            height: 100vh;
+        }
+
+        body::before{
+            content: '';
+            flex-grow: 1;
+        }
+
+
+        .main{
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            grid-template-rows: auto;
+            grid-template-areas: 
+            "aside content";
+
+        }
+        .aside{
+            grid-area: aside;
+        }
+        .content{
+            width: 100%;
+            grid-area: content;
+            
+        }
+
+
+
+        /* navBar */
+
+        #navBar{
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navBar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            height: 60px;
+            padding: 5px 30px;
+            position: relative;
+            z-index: 1000;
+
+        }
+        .home-search-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .homeIcon{
+            padding: 6px;
+            border-radius: 50%;
+            background-color:  rgba(32, 31, 31, 0.637);
+            margin-right: 5px;
+
+        }
+        .homeIcon:hover{
+            padding: 5px;
+            cursor: pointer;
+        }
+        .search-container{
+            display: flex;
+            background-color:  rgba(32, 31, 31, 0.637);
+            width: 450px;
+            height: 45px;
+            border-radius: 30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 16px;
+            
+        }
+        .search-container:hover{
+            border: 1px solid rgba(255, 255, 255, 0.308);
+            background-color: rgba(128, 128, 128, 0.267);
+        }
+        input[type="text"]{
+            width: 350px;
+            height: 30px;
+            background: transparent;
+            border-top: none;
+            border-left: none;
+            border-bottom: none;
+            border-right: 1px solid gray;
+            color: rgb(211, 206, 206);
+            font-size: large;
+        }
+        input[type="text"]:focus{
+            outline: none;
+            color: white;
+            
+        }
+        .login-signin{
+            display: flex;
+        }
+
+        #signinbtn{
+            color: rgb(170, 170, 170);
+            font-size: 17px;
+            font-weight: bold;
+            background: transparent;
+            border: none;
+            padding: 0 16px;
+            &:hover{
+                color: white;
+                font-size: 18px;
+                cursor: pointer;
+            }
+        }
+
+        #loginbtn{
+            width: 100px;
+            height: 45px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 16px;
+            background-color: white;
+            border: none;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.925);
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+
+        #menuToggle{
+            display: none;
+            cursor: pointer;
+        }
+        #closeToggle{
+            display: none;
+            position: fixed;
+            right: 13px;
+            top: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .navMobileView{
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            margin-top: -60px;
+            padding-top: 60px;
+            background-color: black;
+            color: white;
+            padding-left: 50px;
+        }
+
+        .navMobileView > .top-login-signup >h1{
+            font-size: 1.5rem;
+            padding-bottom: 16px;
+            cursor: pointer;
+
+        }
+
+        .navMobileView > .Hyphen{
+            width: 30px;
+            border: 2px solid white;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .navMobileView > .bottom >h1{
+            font-size: 1rem;
+            padding-bottom: 16px;
+            cursor: pointer;
+        }
+        .top-login-signup >h1:hover , .Hyphen:hover , .bottom >h1:hover{
+            color: rgb(128, 128, 128);
+        }
+        #openAppbtn{
+            display: none;
+        }
+        .openAppbtn{
+            position: absolute;
+            text-align: center;
+            width: 100px;
+            background-color: white;
+            color: black;
+            border-radius: 30px;
+            padding: 5px 0;
+            font-weight: bold;
+            right: 60px;
+            cursor: pointer;
+        }
+        .openAppbtn:hover{
+            background-color: rgba(255, 255, 255, 0.925);
+        }
+
+        .spotify-logo{
+            display: none;
+        }
+        .searchMobileView{
+            display: none;
+            cursor: pointer;
+        }
+        .browse{
+            cursor: pointer;
+            padding-left: 5px;
+        }
+
+        @media (max-width:768px) {
+            #menuToggle{
+                display: block;
+            }
+            .home-search-container >.homeIcon{
+                display: none;
+            }
+            .login-signin{
+                display: none;
+            }
+            .search-container{
+                display: none;
+            }
+            .search-container{
+                background: transparent;
+            }
+            .search-container > .search{
+                position: absolute;
+                right: 170px;
+            }
+            #openAppbtn{
+                display: block;
+                padding: 1px 0;
+            }
+            .spotify-logo{
+                position: absolute;
+                font-size: 1.5rem;
+                left: 60px;
+                display: block;
+            }
+            .searchMobileView{
+                position: absolute;
+                display: block;
+                right: 170px;
+                width: 30px;
+                height: 30px;
+            }
+            .navBar{
+                padding: 16px;
+                height: 50px;
+                
+            }
+            .navMobileView{
+                top: 60px;
+                z-index: 1000;
+            }
+            
+        }
+
+
+
+        /* Main Aside */
+
+        .aside{
+            position: fixed;
+            left: 0;
+            margin-top: -10px;
+            padding-top: 60px;
+            width: 450px;
+            color: white;
+            height: 100%;
+            padding-bottom: 100px;
+        }
+
+        .aside-container{
+            height: 100%;
+            background-color: rgba(32, 31, 31, 0.637);
+            border-radius: 8px;
+            margin: 10px;
+            padding-bottom: 13px;
+            
+        }
+        .aside-left-container{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            color: rgb(128, 128, 128);
+            padding: 20px 30px;
+        }
+        .your-library{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            &:hover{
+                color: white;
+                transition: 0.5  ease-in-out;
+                cursor: pointer;
+            }
+            
+        }
+        .plus{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            padding-top: 3px;
+        }
+        .plus:hover{
+            width: 30px;
+            border-radius: 50%;
+            background-color: rgba(128, 128, 128, 0.089);
+            cursor: pointer;
+        }
+        .aside-box-one , .aside-box-two{
+            height: auto;
+            background-color: rgba(128, 128, 128, 0.089);
+            margin: 20px 10px;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+        }
+        #aside-btn{
+            width: 140px;
+            height: 35px;
+            border-radius: 30px;
+            border: unset;
+            background-color: #fff;
+            font-weight: bold;
+            &:hover{
+                background-color: lightgray;
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+
+        }
+        .aside-footer{
+            margin-top: 200px;
+            padding: 0px 16px;
+        }
+        .aside-footer-links{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .aside-footer-links > a{
+            text-decoration: none;
+            color: gray;
+            font-size: 12px;
+        }
+
+        .aside-footer-language{
+            display: flex;
+            gap: 3px;
+            justify-content: center;
+            align-items: center;
+            width: 110px;
+            height: 30px;
+            border: 1px solid gray;
+            border-radius: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            &:hover{
+                border: 2px solid white;
+                transform: scale(1.1);
+            }
+        }
+
+        @media (max-width:768px) {
+            .aside{
+                display: none;
+            }
+        }
+
+
+
+
+
+
+
+        /* Footer banner */
+        .footer{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 10vh;
+            background-color: black;
+
+        }
+        .footer-banner{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            background: linear-gradient(to left , rgba(0, 191, 255, 0.726) ,rgba(243, 8, 145, 0.87) );
+            margin: 5px 10px;
+            padding: 0px 20px;
+        }
+
+        #signUp-free{
+            width: 180px;
+            height: 45px;
+            background-color: white;
+            border-radius: 30px;
+            font-size: 20px;
+            border: unset;
+            margin: 16px 0px;
+            font-weight: bold;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.87);
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width:768px) {
+            #signUp-free{
+                font-size: 13px;
+                height: 30px;
+            }
+            .footer-banner{
+                margin-top: 13px;
+                
+            }
+        }
+
+
+
+
+
+        /* main Content */
+
+        .main{
+            position: fixed;
+            justify-content: center;
+            top: 5px;
+            right: 0;
+            display: grid;
+            width: 100%;
+            color: white;
+            padding-bottom: 100px;
+            height: 100%;
+           
+           
+        }
+
+        .content{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(32, 31, 31, 0.637);
+            border-radius: 8px;
+            margin-top: 60px;
+            padding: 0px 10px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+           
+            
+        }
+        .content-heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+        }
+        .content-heading > a{
+            text-decoration: none;
+            color: white;
+        }
+        .content-heading > a:hover{
+            text-decoration: underline;
+        }
+
+        /* @media (min-width:768px) {
+            .content{
+                margin-left: 450px;
+            }
+        } */
+
+
+        .div-container{
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            border-radius: 16px;
+        }
+        
+        .artist-image{
+            width: 100%;
+            height: 200px;
+            padding-bottom: 5px;
+            border-radius: 50%;
+
+        }
+        .albums-image , .radio-image ,.featured-charts{
+            width: 100%;
+            height: 200px;
+            padding-bottom: 5px;
+            border-radius: 8px;
+        }
+
+        .box{
+            width: 230px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        
+        }
+
+        .box1:hover{
+            background: linear-gradient(to top , rgba(128, 128, 128, 0.151) , rgba(211, 211, 211, 0) );
+            .play-btn{
+                display: block;
+            }
+            
+        }
+
+        .box2:hover , .box3:hover ,.box4:hover{
+            background-color: rgba(128, 128, 128, 0.075);
+            .play-btn{
+                display: block;
+            }
+        }   
+       
+        .play-btn{
+            display: none;
+            position: absolute;
+            right: 30px;
+            top: 160px;
+            border-radius: 50%;
+            background-color: rgba(31, 255, 31, 0.911);
+            padding: 16px;
+            &:hover{
+                background-color:rgb(45, 187, 45) ;
+            }
+            
+        }
+        
+
+
+        @media (max-width:768px) {
+            .main{
+                width: 100%;
+                top: 50px;
+                grid-template-columns: 1fr;
+            }
+            .popular-artists , .popular-albums , .popular-radio ,.featured-charts{
+                width: 100%;
+                height: auto;
+                padding: 0px 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            .play-btn{
+                top: 120px;
+            }
+            .content{
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+
+            .box{
+                width: 230px;
+            }
+            .div-container{
+                justify-content: center;
+            }
+            
+        }
+
+        @media (max-width:600px) {
+            .artist-image , .radio-image , .albums-image ,.featured-charts{ 
+                width: 150px;
+                height: 150px;
+                border-radius: 8px;
+
+            }
+            .box{
+                width: 180px;
+            }
+            .popular-charts{
+                justify-content: center;
+            }
+            
+        }
+
+
+
+
+
+        /* last footer */
+
+        .content-footer{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 100px;
+            padding: 0px 10px;
+        }
+        .content-footer li{
+            list-style-type: none;
+            padding: 6px 0px;
+        }
+
+        .content-footer li a{
+            text-decoration: none;
+            color: rgba(211, 211, 211, 0.534);
+
+        }
+        .content-footer li a:hover{
+            text-decoration: underline;
+        }
+
+        .social-links{
+            display: flex;
+            gap: 10px;
+        }
+        .social-links li{
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(128, 128, 128, 0.137);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: white;
+        }
+        .social-links img{
+            width: 12px;
+            
+             
+        }
+        .social-links li:hover{
+            background-color: rgba(255, 255, 255, 0.877);
+            cursor: pointer;
+        }
+
+        .last{
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            color: rgba(211, 211, 211, 0.534);
+        }
+
+        .last img{
+            width: 10px;
+            height: 10px;
+            padding: 50px 0px;
+            
+            
+            
+        }
+        .line{
+            border: 1px solid rgba(211, 211, 211, 0.144);
+            margin-top: 50px;
+
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <!-- Desktop View Nav Bar -->
+    <nav class="navBar" id="navBar">
+        <img width="40px" height="40px" src="spotifyLogo.jpg" alt="" style="border-radius: 50%;">
+        <h1 class="spotify-logo">Spotify</h1>
+        <div class="home-search-container">
+            <svg class="homeIcon" xmlns="http://www.w3.org/2000/svg" height="45px" viewBox="0 -960 960 960" width="45px" fill="#ffff"><path d="M264-216h96v-240h240v240h96v-348L480-726 264-564v348Zm-72 72v-456l288-216 288 216v456H528v-240h-96v240H192Zm288-327Z"/></svg>
+            <div class="search-container">
+                <svg class="search" xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#ffff"><path d="M765-144 526-383q-30 22-65.79 34.5-35.79 12.5-76.18 12.5Q284-336 214-406t-70-170q0-100 70-170t170-70q100 0 170 70t70 170.03q0 40.39-12.5 76.18Q599-464 577-434l239 239-51 51ZM384-408q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Z"/></svg>
+                <div><input class="input" type="text" placeholder="What do you want to play?"></div>
+                <svg class="browse" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ffff"><path d="M96-588v-155.85Q96-776 118.56-796q22.57-20 54.25-20h614.5q31.69 0 54.19 20 22.5 20 22.5 52.15V-588h-72v-156H168v156H96Zm76.69 324q-31.69 0-54.19-20Q96-304 96-336v-180h72v180h624v-180h72v180q0 32-22.56 52-22.57 20-54.25 20h-614.5ZM48-144v-72h864v72H48Zm432-396ZM96-516v-72h233q14 0 25 7t17 18l39 72 112-176q5-8 12.42-12.5 7.43-4.5 16.5-4.5 9.08 0 17.08 3.5 8 3.5 13 10.5l61 82h222v72H629q-11 0-21-5t-17-14l-37-50-116 184q-5 8-13.06 12.5-8.07 4.5-16.94 4.5-9.9 0-18.45-5.5Q381-395 376-403l-62-113H96Z"/></svg>
+            </div>
+        </div>
+        <div class="login-signin">
+            <button id="signinbtn">Sign Up</button>
+            <button id="loginbtn">Log in</button>
+        </div>
+        <svg class="searchMobileView" xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#ffff"><path d="M765-144 526-383q-30 22-65.79 34.5-35.79 12.5-76.18 12.5Q284-336 214-406t-70-170q0-100 70-170t170-70q100 0 170 70t70 170.03q0 40.39-12.5 76.18Q599-464 577-434l239 239-51 51ZM384-408q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Z"/></svg>
+        <div class="openAppbtn" id="openAppbtn">
+            <p>Open</p>
+            <p>App</p>
+        </div>
+        <svg id="menuToggle" xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="30px" fill="#ffff"><path d="M120-240v-66.67h720V-240H120Zm0-206.67v-66.66h720v66.66H120Zm0-206.66V-720h720v66.67H120Z"/></svg>
+    </nav>
+    <!-- Mobile View Nav Bar -->
+    <nav class="navMobileView">
+        <svg id="closeToggle" xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="30px" fill="#ffff"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
+        <div class="top-login-signup">
+            <h1>Login in</h1>
+            <h1>Sign Up</h1>
+        </div>
+        <div class="Hyphen"></div>
+        <div class="bottom">
+            <h1>Premium</h1>
+            <h1>Help</h1>
+            <h1>Download</h1>
+            <h1>Privacy</h1>
+            <h1>Terms</h1>
+        </div>
+    </nav>
+        </header>
+
+        <main class="main">
+            <section class="aside">
+                <div class="aside-container">
+                    <div class="aside-left-container">
+                        <div class="your-library">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="rgb(128, 128, 128)"><path d="M400-400h160v-80H400v80Zm0-120h320v-80H400v80Zm0-120h320v-80H400v80Zm-80 400q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/></svg>
+                            <h3>Your Library</h3>
+                        </div>
+                        <div class="plus">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                        </div>
+                    </div>
+                    <div class="aside-box-one">
+                        <h3>Create your first playlist</h3>
+                        <p>It's easy, we'll help you</p>
+                        <button id="aside-btn">Create playlist</button>
+                    </div>
+                    <div class="aside-box-two">
+                        <h3>Let's find some podcasts to follow</h3>
+                        <p>We'll keep you updated on new episodes</p>
+                        <button id="aside-btn">Browse podcasts</button>
+                    </div>
+                    <div class="aside-footer">
+                        <div class="aside-footer-links">
+                            <a href="">Legal</a>
+                            <a href="">Saftey&Privacy Center</a>
+                            <a href="">Privacy Policy</a>
+                            <a href="">Cookies</a>
+                            <a href="">About Ads</a>
+                            <a href="">Accessibilty</a>
+                            <a href="">Cookies</a>
+                        </div>
+                        <div class="aside-footer-language">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"/></svg>
+                            <h4>English</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content" >
+                <div class="content-heading">
+                    <h1>Popular artists</h1>
+                    <a href="">show all</a>
+                </div>
+                <div class="popular-artists div-container" id="popular-artists" >
+                    <div class="playbtn"></div>
+                </div>
+
+                <div class="content-heading">
+                    <h1>Popular albums</h1>
+                    <a href="">show all</a>
+                </div>
+                <div class="popular-albums div-container" id="popular-albums">
+                    <div class="playbtn"></div>
+                </div>
+
+                <div class="content-heading">
+                    <h1>Popular radio</h1>
+                    <a href="">show all</a>
+                </div>
+                <div class="popular-radio div-container" id="popular-radio">
+                    <div class="playbtn"></div>
+                </div>
+
+                <div class="content-heading">
+                    <h1>Featured Charts</h1>
+                    <a href="">show all</a>
+                </div>
+                <div class="popular-charts div-container" id="popular-charts">
+                    <div class="playbtn"></div>
+                </div>
+
+                <!-- Content footer -->
+                <div class="content-footer">
+                    <div>
+                        <h3>Company</h3>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Jobs</a></li>
+                        <li><a href="">For the Record</a></li>
+                    </div>
+                    <div>
+                        <h3>Communities</h3>
+                        <li><a href="">For Artists</a></li>
+                        <li><a href="">Developers</a></li>
+                        <li><a href="">Advertising</a></li>
+                        <li><a href="">Investors</a></li>
+                        <li><a href="">Vendors</a></li>
+                    </div>
+                    <div>
+                        <h3>Usefull links</h3>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Free Mobile App</a></li>
+                    </div>
+                    <div>
+                        <h3>Spotify Plans</h3>
+                        <li><a href="">Premium Indiviual</a></li>
+                        <li><a href="">Premium Duo</a></li>
+                        <li><a href="">Premium Family</a></li>
+                        <li><a href="">Premium Student</a></li>
+                        <li><a href="">Spotify free</a></li>
+                    </div>
+                    <div class="social-links">
+                        <li><a href=""><img src="https://cdn-icons-png.flaticon.com/128/1077/1077042.png" alt="instagram"></a></li>
+                        <li><a href=""><img src="https://cdn-icons-png.flaticon.com/128/5968/5968958.png" alt="twitter"></a></li>
+                        <li><a href=""><img src="https://cdn-icons-png.flaticon.com/128/20/20837.png" alt="facebook"></a></li>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div>
+                    <div class="last">
+                        <img src="https://cdn-icons-png.flaticon.com/128/104/104663.png" alt="">
+                        <p>2024 Spotify AB</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-banner">
+                <div>
+                    <h4>Preview of Spotify</h4>
+                    <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit needed</p>
+                </div>
+                <button id="signUp-free">Sign up free</button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const closeToggle = document.getElementById("closeToggle");
+        const navMobileView = document.getElementsByClassName("navMobileView")[0];
+
+        menuToggle.addEventListener("click" , function(){
+            menuToggle.style.display = "none";
+            navMobileView.style.display = "block";
+            closeToggle.style.display = "block";
+            
+        })
+
+        closeToggle.addEventListener("click" , function(){
+            closeToggle.style.display = "none";
+            navMobileView.style.display = "none";
+            menuToggle.style.display = "block";
+        })
+
+
+        const craeteDivPopulaArtists = [
+            {
+                name : "Pritam",
+                pasion : "Artist",
+                image : "https://lh3.googleusercontent.com/sjGMYJQ1J3FZEIBsMYUztMjjYOM4-NJ24CjmIHqxTWCxAM1YgjL-d_17u7_PRhTouOwwAjbu-2x5S6I=w544-h544-p-l90-rj",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                name : "A.R.Rahman",
+                pasion : "Artist",
+                image : "https://www.thestatesman.com/wp-content/uploads/2022/09/AR-Rahman.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                name : "Sachin-Jigar",
+                pasion : "Artist",
+                image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIp6wojS3HnZji4_XZ5VAg-Xo_W1Kdo5YBSQ&s",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                name : "Arjith-Singh",
+                pasion : "Artist",
+                image : "https://i.scdn.co/image/ab676161000051745ba2d75eb08a2d672f9b69b7",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                name : "Anirudh Ravichandar",
+                pasion : "Artist",
+                image : "https://yt3.googleusercontent.com/nJe_SVpWolKRUUIZijG8Skci04VrgN9uBqEe4oVPKPiLnzCpar5qcwADpPJNNVOWoMeZA3M2RQ=s900-c-k-c0x00ffffff-no-rj",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                name : "Atif Aslam",
+                pasion : "Artist",
+                image : "https://i.scdn.co/image/ab6761610000e5ebc40600e02356cc86f0debe84",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            }
+        ];
+
+        craeteDivPopulaArtists.forEach(content => {
+            const div = document.createElement("div");
+            const h4 = document.createElement("h4")
+            const img = document.createElement("img");
+            const para = document.createElement("p"); 
+            const playBtn = document.createElement("img");
+
+            h4.textContent = content.name;
+            para.textContent = content.pasion;
+            para.style.color = "gray";
+            para.style.fontSize = "14px";
+            img.src = content.image;
+            img.alt = content.name;
+            img.className = "artist-image";
+            // img.style.borderRadius = "50%";
+
+            playBtn.src = content.playbtn;
+            playBtn.alt = "play-Button";
+            playBtn.className = "play-btn";
+            playBtn.style.width = "50px";
+
+
+            div.appendChild(img);
+            div.appendChild(h4);
+            div.appendChild(para);
+            div.appendChild(playBtn)
+            div.className = "box box1";
+
+            const popularArtists = document.getElementById("popular-artists");
+            popularArtists.appendChild(div)
+        });
+
+
+
+
+
+
+        const craeteDivPopularAlbums = [
+            {
+                name : "Aashiqui 2",
+                para : "Mithon , Ankit Tiwari ,Jeet Gannguli",
+                albumImage  : "https://upload.wikimedia.org/wikipedia/en/4/4f/Aashiqui_2.jpeg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                name : "Love hotel",
+                para : "leftovermax",
+                albumImage  : "https://i.scdn.co/image/ab67616d0000b2731e63de6489803c2b39e7f8e5",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                name : "GLORY",
+                para : "Yo Yo Honey Singh",
+                albumImage  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfmMoo8WMRbUrKB4LOfEJjqmkKr8oA8G01qg&s",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                name : "Making memories",
+                para : "Karan Aujila ,Ikky",
+                albumImage  : "https://i.scdn.co/image/ab67616d0000b273bb25239324c4e16ae01fda36",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                name : "Aaj Ki Raat (From Stee 2)",
+                para : "Sachin",
+                albumImage  : "https://www.hindustantimes.com/ht-img/img/2024/09/10/550x309/Kid_Stree_2_Aaj_Ki_Raat_Dance_Teachers_Day_Viral_1725930738410_1725930738566.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                name : "Yeh Jawaani Hai Deewani",
+                para : "Pritam",
+                albumImage  : "https://m.media-amazon.com/images/M/MV5BODA4MjM2ODk4OF5BMl5BanBnXkFtZTcwNDgzODk1OQ@@._V1_FMjpg_UX1000_.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            }
+        ];
+
+
+        craeteDivPopularAlbums.forEach(content =>{
+            const div = document.createElement("div");
+            const h4 = document.createElement("h4")
+            const img = document.createElement("img");
+            const para = document.createElement("p"); 
+            const playBtn = document.createElement("img");
+
+            h4.textContent = content.name;
+            para.textContent = content.para;
+            para.style.color = "gray";
+            para.style.fontSize = "14px";
+            img.src = content.albumImage;
+            img.alt = content.name;
+            img.className = "albums-image";
+            // img.style.borderRadius = "50%";
+
+            playBtn.src = content.playbtn;
+            playBtn.alt = "play-Button";
+            playBtn.className = "play-btn";
+            playBtn.style.width = "50px";
+
+
+            div.appendChild(img);
+            div.appendChild(h4);
+            div.appendChild(para);
+            div.appendChild(playBtn)
+            div.className = "box box2";
+
+            const popularAlbums = document.getElementById("popular-albums");
+            popularAlbums.appendChild(div)
+           
+        })
+
+
+
+
+        const craeteDivPopularRadio = [
+            {
+                para : "With Sachin-jigar , Artif Aslam , Mintoon and more",
+                albumImage  : "radio1.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                para : "With karan Aujila , Shubh , AP Dhilon and more",
+                albumImage  : "radio2.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                para : "With Pritam , Mohit Chauhan , Atif Aslam and more",
+                albumImage  : "radio3.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                para : "With Harries Jayaraj , Anirudh Ravichandar , Sid Sriram and more",
+                albumImage  : "radio4.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                para : "With Digit Dosanjh , Subh , Sindhu , Moose Wala and more",
+                albumImage  : "radio5.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            },
+            {
+                para : "With Guru Randhawa, Badshah, Harrdy Sandhu and more",
+                albumImage  : "radio6.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+            }
+        ];
+
+
+        craeteDivPopularRadio.forEach(content =>{
+            const div = document.createElement("div");
+            const h4 = document.createElement("h4")
+            const img = document.createElement("img");
+            const para = document.createElement("p"); 
+            const playBtn = document.createElement("img");
+
+            h4.textContent = content.name;
+            para.textContent = content.para;
+            para.style.color = "gray";
+            para.style.fontSize ="13px";
+            img.src = content.albumImage;
+            img.alt = content.name;
+            img.className = "radio-image";
+            // img.style.borderRadius = "50%";
+
+            playBtn.src = content.playbtn;
+            playBtn.alt = "play-Button";
+            playBtn.className = "play-btn";
+            playBtn.style.width = "50px";
+
+
+            div.appendChild(img);
+            div.appendChild(h4);
+            div.appendChild(para);
+            div.appendChild(playBtn)
+            div.className = "box box3";
+
+            const popularRadio = document.getElementById("popular-radio");
+            popularRadio.appendChild(div)
+           
+        })
+
+
+
+        const craeteDivPopularCharts = [
+            {
+                pasion : "Your weekely update of the most played track right-now -Global",
+                image : "char1.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                pasion : "Your weekely update of the most played track right-now -Global",
+                image : "char2.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                pasion : "Your weekely update of the most played track right-now -Global",
+                image : "char3.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                pasion : "Your weekely update of the most played track right-now -Global",
+                image : "char4.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                pasion : "Your weekely update of the most played track right-now -Global",
+                image : "char5.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            },
+            {
+                pasion : "Your weekely update of the most played track right-now -Global",
+                image : "char6.jpg",
+                playbtn : "https://cdn-icons-png.flaticon.com/128/2088/2088569.png"
+
+            }
+        ];
+
+        craeteDivPopularCharts.forEach(content => {
+            const div = document.createElement("div");
+            const h4 = document.createElement("h4")
+            const img = document.createElement("img");
+            const para = document.createElement("p"); 
+            const playBtn = document.createElement("img");
+
+            h4.textContent = content.name;
+            para.textContent = content.pasion;
+            para.style.color = "gray";
+            para.style.fontSize = "14px";
+            img.src = content.image;
+            img.alt = content.name;
+            img.className = "featured-charts";
+            // img.style.borderRadius = "50%";
+
+            playBtn.src = content.playbtn;
+            playBtn.alt = "play-Button";
+            playBtn.className = "play-btn";
+            playBtn.style.width = "50px";
+
+
+            div.appendChild(img);
+            div.appendChild(h4);
+            div.appendChild(para);
+            div.appendChild(playBtn)
+            div.className = "box box4";
+
+            const popularCharts = document.getElementById("popular-charts");
+            popularCharts.appendChild(div)
+        });
+    </script>
+
+</body>
+</html>
+

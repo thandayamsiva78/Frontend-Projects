@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Currency Converter</h1>
+        </header>
+
+        <article>
+            <section class="input-fields">
+                <select name="fromCurrency" id="fromCurrency">
+                    <!-- Currency options will be populated here -->
+                </select>
+                
+                <select name="toCurrency" id="toCurrency">
+                    <!-- Currency options will be populated here -->
+                </select>
+                
+                <input type="number" name="amount" id="amount" placeholder="Enter an Amount">
+                <input type="text" id="result" readonly placeholder="Converted Amount">
+            </section>
+
+            <section class="result">
+                <button id="convert">Convert</button>
+            </section>
+        </article>
+        
+        <footer>
+            Created By Siva
+        </footer>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>

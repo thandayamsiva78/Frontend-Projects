@@ -1,0 +1,8 @@
+Application of Promise
+
+
+API - external function which is return some where else and you call it from your code /program.
+
+API endPoint - remote functions that you call 
+
+fetch API = provided by the browser which allows you  to call external by providing on address

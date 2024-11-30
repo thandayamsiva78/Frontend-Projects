@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family:sans-serif;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            color: white;   
+        }
+
+        
+        .first-page-one{
+            width: 800px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            margin-top: 220px;
+            text-align: center;
+            
+            
+        }
+
+        .signup .first-page-one h1{
+            font-size: 70px;
+            font-weight: bold;
+            
+        }
+        .signup .first-page-one p{
+            font-size: 18px;
+            padding: 16px;
+        }
+        .signup  input[type="text"]{
+            width: 366px;
+            height: 60px;
+            border-radius: 5px;
+            padding: 16px;
+            background-color: rgba(255, 255, 255, 0.068);
+            border: 1px solid gray;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+    
+        }
+
+        .signup .getstarted{
+            width: 220px;
+            height: 60px;
+            background-color: rgba(255, 0, 0, 0.918);
+            border-radius: 5px;
+            color: white;
+            padding: 21px;
+            font-size: 16px;
+            font-weight: bold;
+           
+
+        }
+        .signup .getstarted:hover , .navbar #signinbtn:hover{
+            background-color: rgba(255, 0, 0, 0.836);
+            cursor: pointer;
+        }
+
+        .navbar{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+
+        .navbar h1{
+            color: red;
+            font-size: 70px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            
+              
+        }
+        .navbar #englishbtn{
+            width: 130px;
+            height: 30px;
+            background: transparent;
+            color: white;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .navbar #signinbtn{
+            width: 100px;
+            height: 30px;
+            background-color: red;
+            color: white;
+            border: 1px solid red;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            
+        }
+        .navbar .btn{
+            position: relative;
+            
+        }
+        .navbar .translatebtn{
+            position: absolute;
+            left: 10px;
+            top: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <section class="signup first-page">
+        <nav class="navbar">
+            <h1>NETFLIX</h1>
+            <form action="http://127.0.0.1:5502/SIGN%20IN/index.html?email=&password=" class="btn">
+                <select name="" id="englishbtn">
+                    <option value="">English</option>
+                    <option value="">हिंदी</option>
+                </select>
+                <button id="signinbtn">Sign in</button>
+            </form>
+        </nav>
+        <div class="first-page-one">
+            <h1>Unlimited movies, TV</h1>
+            <h1>shows and more</h1>
+            <p>starts at &#8377;149. Cancel anytime.</p>
+            <br>
+            <p>Ready to watch? Enter your email to create restart your membership.</p>
+            <div class="bottom">
+                <input type="text" placeholder="Email address">
+                <label class="getstarted" for="getstarted"> Get Started
+                    <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="25px" fill="#e8eaed"><path d="m288-96-68-68 316-316-316-316 68-68 384 384L288-96Z" /></svg></label>
+            </div>
+
+        </div>
+        
+
+    </section>
+
+    
+</body>
+</html>

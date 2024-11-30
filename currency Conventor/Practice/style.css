@@ -1,0 +1,50 @@
+#container {
+    width: 450px;
+    height: 350px;
+    border: 1px solid black;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 0 auto;
+
+
+}
+
+h1 {
+    text-align: center;
+}
+
+.fromCurrency,
+.toCurrency {
+    display: flex;
+    flex-direction: column;
+    width: 210px;
+    gap: 10px;
+
+}
+
+.Currency {
+    display: flex;
+    gap: 6px;
+
+}
+
+select,
+input,
+#convert {
+    padding: 8px;
+}
+
+#convert {
+    width: 100%;
+    margin-top: 30px;
+    font-size: larger;
+}
+
+.amount-result {
+    display: flex;
+    margin-top: 10px;
+}
+
+/* #amount , #result{
+            width: 200px;
+        } */

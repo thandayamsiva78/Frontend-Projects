@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js Practice</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+
+        }
+        .box h1{
+            font-size: 20px;
+            padding: 0px 20px;
+        }
+        .box p{
+            font-size: 10px;
+        }
+        .box #btn{
+            width: 150px;
+            height: 20px;
+            margin: 20px 0px;
+            
+        }
+        .box{
+            width: 350px;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid;
+            overflow: hidden;
+
+        }
+        .box img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container"></div>
+    <script>
+        const container = document.getElementById("container");
+        const divContent = [
+            {
+                title  : "Heading 1",
+                imgSrc :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-yvq5btHkl5JSH-oBwC3_l5FLuIgvnl9w&s",
+                para   : "This is about Picture",
+                btn    : "Click here"
+            },
+            {
+                title  : "Heading 2",
+                imgSrc :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-yvq5btHkl5JSH-oBwC3_l5FLuIgvnl9w&s",
+                para   : "This is about Picture",
+                btn    : "Click here"
+            },
+            {
+                title  : "Heading 2",
+                imgSrc :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-yvq5btHkl5JSH-oBwC3_l5FLuIgvnl9w&s",
+                para   : "This is about Picture",
+                btn    : "Click here"
+            }
+            ,
+            {
+                title  : "Heading 3",
+                imgSrc :"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3-yvq5btHkl5JSH-oBwC3_l5FLuIgvnl9w&s",
+                para   : "This is about Picture",
+                btn    : "Click here"
+            }
+        ];
+
+        divContent.forEach(content => {
+            const createDiv = document.createElement("Div");
+            createDiv.classList.add("box");
+
+            createDiv.innerHTML =`
+                <img src="${content.imgSrc}" alt="image1"/>
+                <h1>${content.title}<h1/>
+                <p>${content.para}</p>
+                <center><button id="btn">${content.btn}<center/>
+
+            `;
+            container.appendChild(createDiv);
+
+        });
+        
+    </script>
+</body>
+</html>

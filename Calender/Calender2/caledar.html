@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calendar {
+            width: 350px;
+            margin: 20px auto;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .calendar-header button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .calendar-header h2 {
+            margin: 0;
+        }
+        .days {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .day {
+            width: 14.28%;
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+            margin: 1px 0;
+        }
+        .day header {
+            background-color: #f4f4f4;
+            padding: 10px 0;
+            font-weight: bold;
+        }
+        .day.today {
+            background-color: #add8e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="calendar">
+        <div class="calendar-header">
+            <button onclick="prevMonth()">Previous</button>
+            <h2 id="monthYear"></h2>
+            <button onclick="nextMonth()">Next</button>
+        </div>
+        <div class="days" id="days"></div>
+    </div>
+    
+    <script>
+const daysContainer = document.getElementById('days');
+const monthYear = document.getElementById('monthYear');
+
+let date = new Date();
+let currentMonth = date.getMonth();
+let currentYear = date.getFullYear();
+
+const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+];
+
+function renderCalendar(month, year) {
+    daysContainer.innerHTML = '';
+    monthYear.innerText = `${months[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+        daysContainer.innerHTML += '<div class="day"></div>';
+    }
+
+    for (let day = 1; day <= lastDate; day++) {
+        const today = new Date().getDate();
+        const thisMonth = new Date().getMonth();
+        const thisYear = new Date().getFullYear();
+
+        const dayClass = (day === today && month === thisMonth && year === thisYear) ? 'day today' : 'day';
+        daysContainer.innerHTML += `<div class="${dayClass}">${day}</div>`;
+    }
+}
+
+function prevMonth() {
+    if (currentMonth === 0) {
+        currentMonth = 11;
+        currentYear--;
+    } else {
+        currentMonth--;
+    }
+    renderCalendar(currentMonth, currentYear);
+}
+
+function nextMonth() {
+    if (currentMonth === 11) {
+        currentMonth = 0;
+        currentYear++;
+    } else {
+        currentMonth++;
+    }
+    renderCalendar(currentMonth, currentYear);
+}
+
+renderCalendar(currentMonth, currentYear);
+
+    </script>
+</body>
+</html>

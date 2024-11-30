@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Product Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="product-image">
+            <img src="product.jpg" alt="Product" id="mainImage">
+        </div>
+        <div class="product-details">
+            <h1>Product Title</h1>
+            <p id="productDescription">Product description goes here...</p>
+            <p id="productPrice">$99.99</p>
+            <div class="variants">
+                <label for="colorSelect">Color:</label>
+                <select id="colorSelect">
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                </select>
+            </div>
+            <div class="quantity">
+                <button id="decreaseQuantity">-</button>
+                <input type="number" id="quantityInput" value="1">
+                <button id="increaseQuantity">+</button>
+            </div>
+            <button id="addToCartBtn">Add to Cart</button>
+            <div id="cartNotification"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
